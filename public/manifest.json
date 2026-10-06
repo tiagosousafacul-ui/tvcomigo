@@ -1,0 +1,21 @@
+{
+  "name": "SyncRave - Watch Party & Voz",
+  "short_name": "SyncRave",
+  "description": "Assista a Netflix e streamings sincronizados com chat de voz sem interrupções",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=192&auto=format&fit=crop&q=80",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=512&auto=format&fit=crop&q=80",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
