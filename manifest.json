@@ -1,0 +1,23 @@
+{
+  "id": "https://tvcomigo.vercel.app/",
+  "name": "TV Comigo - Watch Party & Voz",
+  "short_name": "TV Comigo",
+  "description": "Assista a filmes e streamings sincronizados com bate-papo de voz em tempo real",
+  "start_url": "https://tvcomigo.vercel.app/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=192&auto=format&fit=crop&q=80",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=512&auto=format&fit=crop&q=80",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

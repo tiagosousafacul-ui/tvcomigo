@@ -1,6 +1,10 @@
 {
-  "name": "TV Comigo - Watch Party & Voz Sem Quedas",
+  "name": "Remix SyncRave - Watch Party \u0026 Voz Sem Quedas",
   "description": "Assista a filmes, streamings e vídeos sincronizados com amigos com bate-papo de voz em tempo real e chat sem interrupções para iPhone, Android e Desktop.",
-  "requestFramePermissions": ["microphone"],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
