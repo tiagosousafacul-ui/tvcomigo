@@ -232,13 +232,13 @@ export function useSyncRave(
 
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     const host = window.location.host;
-    const wsUrl = `${protocol}//${host}`;
+    const wsUrl = import.meta.env.VITE_WS_URL?.trim() || `${protocol}//${host}`;
     const ws = new WebSocket(wsUrl);
+    let hasJoinedRoom = false;
     wsRef.current = ws;
 
     ws.onopen = () => {
       setIsConnected(true);
-      setIsConnecting(false);
 
       // Join Room
       const joinMsg: WSClientMessage = {
@@ -279,8 +279,11 @@ export function useSyncRave(
             break;
           }
           case 'room:joined':
+            hasJoinedRoom = true;
             setRoom(msg.room);
             setCurrentUserId(msg.yourId);
+            setIsConnecting(false);
+            setError(null);
             // Initiate WebRTC mesh connections to existing participants
             Object.keys(msg.room.participants).forEach((pid) => {
               if (pid !== msg.yourId) {
@@ -292,6 +295,7 @@ export function useSyncRave(
             setRoom(msg.room);
             break;
           case 'room:error':
+            setIsConnecting(false);
             setError(msg.message);
             break;
           case 'playback:updated':
@@ -459,8 +463,14 @@ export function useSyncRave(
     };
 
     ws.onclose = () => {
+      if (wsRef.current !== ws) return;
       setIsConnected(false);
+      setIsConnecting(false);
       if (pingIntervalRef.current) clearInterval(pingIntervalRef.current);
+      if (!hasJoinedRoom) {
+        setError(`Não foi possível conectar ao servidor de salas (${wsUrl}). Confira o VITE_WS_URL e se o servidor está ativo.`);
+        return;
+      }
       if (!reconnectTimeoutRef.current) {
         reconnectTimeoutRef.current = window.setTimeout(() => {
           reconnectTimeoutRef.current = null;
@@ -471,6 +481,8 @@ export function useSyncRave(
 
     ws.onerror = () => {
       setIsConnected(false);
+      setIsConnecting(false);
+      setError(`Não foi possível conectar ao servidor de salas (${wsUrl}). Confira o VITE_WS_URL e se o servidor está ativo.`);
     };
   }, [roomId, initialUser, createPeerConnection, sendWS]);
 
